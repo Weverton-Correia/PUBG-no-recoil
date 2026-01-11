@@ -48,3 +48,29 @@ function OnEvent(event, arg)
         until not IsMouseButtonPressed(1)
     end
 end
+
+
+# Codigo melhorado com uso caps para ativar e desativar 
+
+function OnEvent(event, arg)
+
+    if event == "PROFILE_ACTIVATED" then
+        EnablePrimaryMouseButtonEvents(true)
+    end
+
+    -- Só ativa se Caps Lock estiver ligado
+    if event == "MOUSE_BUTTON_PRESSED" and arg == 1 and IsKeyLockOn("capslock") then
+        
+        local recoil = 5
+
+        repeat
+            MoveMouseRelative(0, recoil)
+            Sleep(3)
+
+            if recoil < 5 then
+                recoil = recoil + 0.05
+            end
+
+        until not IsMouseButtonPressed(1)
+    end
+end
